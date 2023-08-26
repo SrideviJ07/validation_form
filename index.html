@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form validation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h3>CREATE ACCOUNT</h3>
+        </div>
+        <form class="form" id="form">
+            <div class="form-control ">
+                <label>Username</label>
+                <input type="text" placeholder="Enter The Username"
+                id="Username">
+                <i class="fa-regular fa-circle-check"></i>
+                <i class="fa-solid fa-exclamation"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <label>E-mail</label>
+                <input type="email" placeholder="abcd@gmail.com"
+                id="Email">
+                <i class="fa-regular fa-circle-check"></i>
+                <i class="fa-solid fa-exclamation"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <label>Password</label>
+                <input type="password" placeholder="enter the password"
+                id="Password">
+                <i class="fa-regular fa-circle-check"></i>
+                <i class="fa-solid fa-exclamation"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <label>Confirm Password</label>
+                <input type="password" placeholder="RE-enter the password"
+                id="ConfirmPassword">
+                <i class="fa-regular fa-circle-check"></i>
+                <i class="fa-solid fa-exclamation"></i>
+                <small>Error message</small>
+            </div>
+            <button>Submit</button>
+        </form>
+    </div>
+    <script>
+        const form= document.getElementById("form");
+        const Username= document.getElementById("Username");
+        const Email= document.getElementById("Email");
+        const Password = document.getElementById("Password");
+        const ConfirmPassword= document.getElementById("ConfirmPassword");
+
+        form.addEventListener('submit',e=>{
+            e.preventDefault();
+            checkInput();
+        });
+
+        function checkInput()
+        {
+            const usernameValue = username.value.trim();
+            const  EmailValue= Email.value.trim();
+            const PasswordValue= Password.value.trim();
+            const ConfirmPasswordValue = ConfirmPassword.value.trim();
+
+            if(usernameValue == ''){
+                setError(username,'Username cannot be blank');
+            }
+            else{
+                setSucess(username);
+            }
+
+            if(EmailValue == '')
+            {
+                set(Email,'email cannot be blank');
+            }
+            else if(!isEmail(EmailValue))
+            {
+              setError(Email,'not a valid email')
+            }
+            else
+            {
+                setSuccess(Email);
+            }
+            
+            if(PasswordValue == ''){
+                setError(Password,'Password cannot be blank');
+            }
+            else{
+                setSucess(Password);
+            }
+            if(ConfirmPasswordValue == ''){
+                setError(ConfirmPasswordValue,'Password cannot be blank');
+            }
+            else if(PasswordValue!=ConfirmPasswordValue ){
+                setError(ConfirmPassword,'password does not match' )
+            }
+            else{
+                setSucess(ConfirmPassword);
+            }
+        }
+        function setError(input,message){
+            const formcontrol = input.parentElement;
+            const small = formControl.querySElector('small');
+            formcontrol.className = 'form-control error';
+            small.innerText = message;
+          }
+          function setSuccess(input){
+            const formControl = input.parentElement;
+            formControl.className = 'form-control success';
+          }
+          function isEmail(Email){
+            return
+          }
+    </script>
+     
+</body>
+</html>
